@@ -26,10 +26,4 @@ class Artist < ApplicationRecord
   def artist_search
     RSpotify::Artist.search(name)
   end
-
-  def name_presence
-    return if name.blank?
-    @artists = artist_search
-    errors.add(:base, 'Must be a valid artist in Spotify') if @artists.empty?
-  end
 end
