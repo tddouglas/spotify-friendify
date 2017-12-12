@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @song.name %> by <%= link_to @artist.name, @artist %></h1>
+<br>
+<%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{@song.spotify_uri}", width: 300, height: 380, frameborder: false %>
+
+<br>
+
+<%= link_to 'Delete', artist_song_path(@artist, @song), method: :delete %>

@@ -1,0 +1,12 @@
+<h1><%= render text: User.find_by(id: session[:user_id]).name %>'s Favorite Songs</h1>
+<br />
+<div class="row">
+  <% @songs.each do |song| %>
+    <div class="col-md-4 text-center">
+      <%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{song.spotify_uri}", width: 300, height: 380, frameborder: false %>
+      <br />
+      <br />
+    </div>
+    <br>
+  <% end %>
+</div>

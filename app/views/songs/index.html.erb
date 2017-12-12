@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= link_to @artist.name, @artist %>'s Songs</h1>
+
+<div class="row">
+  <% @songs.each do |song| %>
+    <div class="col-md-4 text-center">
+      <%= link_to song.name, artist_song_path(@artist, song) %><br>
+      <%= content_tag :iframe, '', src: "https://open.spotify.com/embed?uri=#{song.spotify_uri}", width: 300, height: 300, frameborder: false %>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Song', new_artist_song_path(@artist) %>

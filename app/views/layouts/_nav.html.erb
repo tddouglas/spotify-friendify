@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container">
+    <%= link_to "Spotify Friendify", root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_content" aria-controls="navbar_content" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar_content" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <% if logged_in? -%>
+          <li class="nav-item"><%= link_to current_user.name, "/users/#{current_user.id}", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Artists", "/users/#{current_user.id}/artists", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Songs", "/users/#{current_user.id}/songs", class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Friend Requests", '/friend_requests', class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Log out", logout_path, method: :delete, class: 'nav-link' %></li>
+          <%# Only display the sign up and log in links if no user is logged in %>
+        <% else -%>
+          <li class="nav-item"><%= link_to "Log in with Spotify", '/auth/spotify', class: 'nav-link' %></li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+</nav>
+
