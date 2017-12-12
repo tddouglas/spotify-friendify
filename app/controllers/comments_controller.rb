@@ -15,8 +15,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    print "User is #{@comment.user}"
-    print " And comment is #{@comment}"
 
     respond_to do |format|
       if @comment.save

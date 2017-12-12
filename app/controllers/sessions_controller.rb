@@ -30,9 +30,7 @@ class SessionsController < ApplicationController
 
   # DELETE /logout
   def destroy
-    if current_user
-      session.delete(:user_id)
-    end
+    session.delete(:user_id) if current_user
     redirect_to root_path
   end
 
