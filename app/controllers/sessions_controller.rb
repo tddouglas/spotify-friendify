@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
   def create
     spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
     @user = User.from_omniauth(request.env['omniauth.auth'], spotify_user)
+    return if @user.nil?
     session[:user_id] = @user.id
     redirect_to '/'
   end

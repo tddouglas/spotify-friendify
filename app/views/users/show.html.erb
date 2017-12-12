@@ -5,9 +5,12 @@
       <div class="float-right">
         <% if logged_in? %>
           <% if @user == current_user %>
-            <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-primary' %>
+            <%= link_to 'Favorite Songs', "/users/#{@user.id}/songs", method: :get, class: 'btn btn-primary' %>
+            <%= link_to 'Favorite Artists', "/users/#{@user.id}/artists", method: :get, class: 'btn btn-primary' %>
             <%= link_to 'Delete Account', current_user, method: :delete, class: 'btn btn-danger' %>
           <% elsif current_user.accepted_friends.include? @user %>
+            <%= link_to 'Favorite Songs', "/users/#{@user.id}/songs", method: :get, class: 'btn btn-primary' %>
+            <%= link_to 'Favorite Artists', "/users/#{@user.id}/artists", method: :get, class: 'btn btn-primary' %>
             <%= link_to 'Remove Friend', remove_friendship_user_path(@user), method: :delete, class: 'btn btn-danger' %>
           <% elsif current_user.outgoing_friend_requests.include? @user %>
             <%= link_to 'Cancel Friend Request', remove_friendship_user_path(@user), method: :delete, class: 'btn btn-danger' %>
@@ -44,11 +47,21 @@
     </table>
   </div>
   <div class="col-lg-8 order-1 order-lg-2">
-    <% if current_user == @user %>
+    <% if logged_in? and (@user == current_user or current_user.accepted_friends.include? @user) %>
       <div class="clearfix">
-        <%= render text: "Where status used to be"%>
+        <%= render 'comments/form', comment: @comment %>
       </div>
-    <br>
+      <br>
+      <% if @user.comments.empty? %>
+        <p class="text-center"><%= @user.name %> doesn't have any comments yet.</p>
+      <% else %>
+        <% @user.comments.each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+          <br>
+        <% end %>
+      <% end %>
+      </div>
+      <br>
     <% end %>
   </div>
 </div>

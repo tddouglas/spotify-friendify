@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
 
   # GET /all
   def all
-    user = User.find_by(id: session[:user_id])
+    user = User.find_by(id: params[:user_id])
     spotify_user = RSpotify::User.find(user.uid)
     top_artists = spotify_user.top_artists(time_range: 'short_term')
     ret = []

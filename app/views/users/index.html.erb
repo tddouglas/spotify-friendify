@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th class="table-dark bg-primary">Name</th>
-      <th class="table-dark bg-primary">Email</th>
+      <th class="table-dark bg-primary">Options</th>
       <th class="table-dark bg-primary" colspan="2"></th>
     </tr>
   </thead>
@@ -13,10 +13,8 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
         <% if logged_in? %>
           <% if current_user == user %>
-            <td><%= link_to 'Edit Profile', edit_user_path(user) %></td>
             <td><%= link_to 'Delete Account', user, method: :delete %></td>
           <% elsif current_user.accepted_friends.include? user %>
             <td><%= link_to 'Remove Friend', remove_friendship_user_path(user), method: :delete %></td>

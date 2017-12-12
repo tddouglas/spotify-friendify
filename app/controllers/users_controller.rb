@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    # @status = Status.new
+    @comment = Comment.new
   end
 
   # GET /users/new

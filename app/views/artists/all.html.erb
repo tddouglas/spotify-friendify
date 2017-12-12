@@ -1,4 +1,4 @@
-<h1><%= render text: User.find_by(id: session[:user_id]).name %>'s Favorite Artists</h1>
+<h1><%= render text: User.find_by(id: params[:user_id]).name %>'s Favorite Artists</h1>
 <br />
 <div class="row">
   <% @artists.each do |artist| %>
